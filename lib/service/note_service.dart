@@ -12,8 +12,11 @@ class NoteService extends BaseService {
   }
 
   NoteDao noteDao = locator<NoteDao>();
-  List<Note> getNotesByUserId(int userId) {
-    noteDao.findByUserId(userId);
+  Future<List<Note>> getNotesByUserId(int userId) async{
+    var result = await noteDao.findByUserId(userId);
+    return result;
+
+
   }
 
 }

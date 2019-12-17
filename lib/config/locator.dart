@@ -14,5 +14,5 @@ void setupLocator(){
   locator.registerLazySingleton<NoteService>(() => NoteService());
 
   locator.registerFactory(()=> HomeModel());
-  locator.registerFactory(()=> BaseModel());
+  locator.registerFactory<BaseModel>(()=> BaseModel());
 }

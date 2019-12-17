@@ -16,12 +16,12 @@ class BaseModel extends ChangeNotifier {
       _state = state;
       notifyListeners();
     }
+    List<Note> noteList;
 
-    List<Note> getNotesByUserId({int userId}){
+    Future getNotesByUserId({int userId}) async{
       setState(ViewState.loading);
-      Future.delayed(Duration(milliseconds: 2000));
-      List<Note> result = noteService.getNotesByUserId(userId);
+      await Future.delayed(Duration(milliseconds: 3000));
+      noteList = await noteService.getNotesByUserId(userId);
       setState(ViewState.done);
-      return result;
     }
 }

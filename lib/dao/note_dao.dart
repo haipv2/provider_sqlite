@@ -16,12 +16,12 @@ class NoteDao extends BaseDao {
   }
 
   Future<List<Note>> findByUserId(int userId) async {
-    Future.delayed(Duration(milliseconds: 2000));
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query('NOTE');
-    return List.generate(maps.length, (i) {
+    List<Note> result = List.generate(maps.length, (i) {
       return Note(id: maps[i]['id'], content: maps[i]['content']);
     });
+    return result;
   }
 
   @override
