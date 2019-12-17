@@ -9,7 +9,7 @@ class BaseModel extends ChangeNotifier {
 
     final NoteService noteService = locator<NoteService>();
 
-    ViewState _state = ViewState.done;
+    ViewState _state = ViewState.loading;
     ViewState get state => _state;
 
     void setState (ViewState state) {
@@ -19,7 +19,8 @@ class BaseModel extends ChangeNotifier {
 
     List<Note> getNotesByUserId({int userId}){
       setState(ViewState.loading);
-      List<Note> result = noteService.getAllNotes(userId);
+      Future.delayed(Duration(milliseconds: 2000));
+      List<Note> result = noteService.getNotesByUserId(userId);
       setState(ViewState.done);
       return result;
     }

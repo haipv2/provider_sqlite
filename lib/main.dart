@@ -4,7 +4,7 @@ import 'app.dart';
 import 'config/locator.dart';
 
 void main () async{
-  Provider.debugCheckInvalidValueType = null;
+//  Provider.debugCheckInvalidValueType = null;
   setupLocator();
   runApp(App());
 }

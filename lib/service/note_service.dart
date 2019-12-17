@@ -12,7 +12,7 @@ class NoteService extends BaseService {
   }
 
   NoteDao noteDao = locator<NoteDao>();
-  List<Note> getAllNotes(int userId) {
+  List<Note> getNotesByUserId(int userId) {
     noteDao.findByUserId(userId);
   }
 

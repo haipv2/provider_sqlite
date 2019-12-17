@@ -1,7 +1,6 @@
 import 'package:provider_base/model/user.dart';
 
 import 'base_dao.dart';
-import '../config/dbprovider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart';

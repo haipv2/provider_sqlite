@@ -20,9 +20,10 @@ abstract class BaseDao<T> {
 
   initDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path,'userdb.db');
+    String path = join(documentsDirectory.path,'app.db');
     return await openDatabase(path, version: 1,onOpen: (db){}, onCreate: (Database db, int version) async{
       await db.execute('CREATE TABLE USER ( id INTEGER PRIMARY KEY, name TEXT, age INTEGER, password TEXT )');
+      await db.execute('CREATE TABLE NOTE ( id INTEGER PRIMARY KEY, content TEXT, user_id INTEGER, date_time TEXT, reminder BIT )');
     });
   }
 
