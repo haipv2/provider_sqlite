@@ -13,18 +13,24 @@ class InitPage extends StatefulWidget {
 }
 
 class _InitPageState extends State<InitPage> {
-  BaseModel baseModel = locator<BaseModel>();
+  @override
+  void initState() {
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<BaseModel>(
-      create: (_) {
-        var x = baseModel.getNotesByUserId();
-        return baseModel;
-      },
-      child: Scaffold(
-        body: baseModel.state == ViewState.loading ? LoadingPage() : HomePage(),
-      ),
-    );
+    return buildWidget();
+  }
+
+  Widget buildWidget() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+        return HomePage();
+      }));
+    });
+    return LoadingPage();
   }
 }
+

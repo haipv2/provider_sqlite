@@ -13,6 +13,6 @@ void setupLocator(){
   locator.registerLazySingleton<NoteDao>(() => NoteDao());
   locator.registerLazySingleton<NoteService>(() => NoteService());
 
-  locator.registerFactory(()=> HomeModel());
+//  locator.registerFactory(()=> HomeModel());
   locator.registerFactory<BaseModel>(()=> BaseModel());
 }
