@@ -19,4 +19,8 @@ class NoteService extends BaseService {
 
   }
 
+  addNote(Note note) {
+    noteDao.insert(note);
+  }
+
 }

@@ -29,11 +29,6 @@ class _AppState extends State<App> {
           model.getNotesByUserId();
         },
         child: HomePage(),
-//        builder: (context, model, _) {
-//          return model.state == ViewState.loading
-//              ? LoadingPage()
-//              : Center(child: Text('HOME PAGE'));
-//        },
       ),
     );
   }
