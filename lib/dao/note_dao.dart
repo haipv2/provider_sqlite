@@ -1,4 +1,5 @@
 import 'package:provider_base/model/note.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'base_dao.dart';
 
@@ -31,14 +32,17 @@ class NoteDao extends BaseDao {
   }
 
   @override
-  void insert(t) {
-    // TODO: implement insert
+  void insert(note) async {
+    final db = await database;
+    await db.insert(
+      'NOTE',
+      note.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   @override
   void update(t) {
     // TODO: implement update
   }
-
-
 }

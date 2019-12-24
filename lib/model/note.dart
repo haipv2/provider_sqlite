@@ -5,4 +5,7 @@ class Note {
 
   Note({this.id, this.content, this.userId});
 
+  Map<String, dynamic> toMap() {
+    return {'id': id, 'content': content, 'user_id': userId};
+  }
 }
