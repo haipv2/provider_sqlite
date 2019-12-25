@@ -3,6 +3,7 @@ import 'package:provider_base/dao/note_dao.dart';
 import 'package:provider_base/dao/user_dao.dart';
 import 'package:provider_base/model_view/base_model_view.dart';
 import 'package:provider_base/model_view/home_model.dart';
+import 'package:provider_base/model_view/note_model.dart';
 import 'package:provider_base/service/base_service.dart';
 import 'package:provider_base/service/note_service.dart';
 
@@ -15,4 +16,5 @@ void setupLocator(){
 
 //  locator.registerFactory(()=> HomeModel());
   locator.registerFactory<BaseModel>(()=> BaseModel());
+  locator.registerFactory<NoteModel>(()=> NoteModel());
 }

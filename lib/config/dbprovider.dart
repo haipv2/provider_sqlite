@@ -24,7 +24,7 @@ class DBProvider {
     String path = join(documentsDirectory.path,'userdb.db');
     return await openDatabase(path, version: 1,onOpen: (db){}, onCreate: (Database db, int version) async{
       await db.execute('CREATE TABLE USER ( id INTEGER PRIMARY KEY, name TEXT, age INTEGER, password TEXT )');
-      await db.execute('CREATE TABLE NOTE ( id INTEGER PRIMARY KEY, content TEXT, user_id INTEGER, date_time TEXT, reminder BIT )');
+      await db.execute('CREATE TABLE NOTE ( id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT, user_id INTEGER, date_time TEXT, reminder BIT )');
     });
   }
 }

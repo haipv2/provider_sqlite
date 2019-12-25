@@ -16,21 +16,12 @@ class _InitPageState extends State<InitPage> {
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return buildWidget();
+    return HomePage();
   }
 
-  Widget buildWidget() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
-        return HomePage();
-      }));
-    });
-    return LoadingPage();
-  }
 }
 

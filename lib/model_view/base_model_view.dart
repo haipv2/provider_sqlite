@@ -23,13 +23,15 @@ class BaseModel extends ChangeNotifier {
 
   Future getNotesByUserId({int userId}) async {
     setState(ViewState.loading);
+    await Future.delayed(Duration(milliseconds: 2000));
     noteList = await noteService.getNotesByUserId(userId);
     setState(ViewState.done);
   }
 
   Future<void> openAddNote(Note note) async {
     setState(ViewState.loading);
-    await noteService.addNote(note);
+    await Future.delayed(Duration(milliseconds: 2000));
+    noteService.addNote(note);
     setState(ViewState.done);
   }
 }

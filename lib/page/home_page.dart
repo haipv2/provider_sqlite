@@ -22,8 +22,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  TextEditingController _controller = new TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     model = Provider.of<BaseModel>(context);
@@ -35,37 +33,7 @@ class _HomePageState extends State<HomePage> {
               : buildListNoteUI()),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showDialog(
-              context: context,
-              builder: (_) => Scaffold(
-                    body: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        TextField(
-                          decoration: InputDecoration(labelText: 'input note'),
-                          controller: _controller,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            RaisedButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text('Close'),
-                            ),
-                            RaisedButton(
-                              onPressed: () {
-                                model.openAddNote(
-                                    Note(content: _controller.text));
-                              },
-                              child: Text('Add'),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ));
+          Navigator.of(context).pushNamed('note_create');
         },
         child: Icon(Icons.add),
       ),
@@ -84,10 +52,4 @@ class _HomePageState extends State<HomePage> {
             itemCount: model.noteList.length,
           );
   }
-
-//  Future<void> loadingPage() async {
-//    await model.getNotesByUserId().then((data) {
-//      print(data);
-//    });
-//  }
 }
