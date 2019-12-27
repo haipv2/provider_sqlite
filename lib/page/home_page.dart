@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_base/config/locator.dart';
-import 'package:provider_base/enums/view_state.dart';
 import 'package:provider_base/model/note.dart';
-import 'package:provider_base/model_view/base_model_view.dart';
-import 'package:provider_base/service/note_service.dart';
-
+import 'package:provider_base/provider/home_provider.dart';
 import 'widget/loading_widget.dart';
 import 'widget/note_widget.dart';
 
@@ -15,8 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  BaseModel model;
-
   @override
   void initState() {
     super.initState();
@@ -24,13 +18,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    model = Provider.of<BaseModel>(context);
-    print(model);
+    List<Note> listNoteStream = Provider.of<List<Note>>(context);
     return Scaffold(
       body: Center(
-          child: model.state == ViewState.loading
+          child: listNoteStream == null
               ? LoadingPage()
-              : buildListNoteUI()),
+              : buildListNoteUI(listNoteStream)),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed('note_create');
@@ -40,16 +33,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildListNoteUI() {
-    return model.noteList.isEmpty
-        ? Center(
-            child: Text('No Item'),
-          )
-        : ListView.builder(
-            itemBuilder: (context, i) {
-              return NoteWidget(model.noteList[i]);
-            },
-            itemCount: model.noteList.length,
-          );
+  Widget buildListNoteUI(List<Note> listNoteStream) {
+    return ListView.builder(
+      itemBuilder: (context, i) {
+        return NoteWidget(listNoteStream[i]);
+      },
+      itemCount: listNoteStream.length,
+    );
   }
 }

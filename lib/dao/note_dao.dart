@@ -45,4 +45,9 @@ class NoteDao extends BaseDao {
   void update(t) {
     // TODO: implement update
   }
+
+  void remove(Note note) async {
+    final db = await database;
+    await db.delete('NOTE', where: "id = ?", whereArgs: [note.id]);
+  }
 }

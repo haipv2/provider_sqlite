@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_base/page/router.dart';
 
-import 'config/locator.dart';
-import 'config/router.dart';
-import 'enums/view_state.dart';
-import 'model_view/base_model_view.dart';
-import 'page/base_page.dart';
 import 'page/home_page.dart';
-import 'page/init_page.dart';
-import 'page/widget/loading_widget.dart';
+import 'provider/home_provider.dart';
 
 class App extends StatefulWidget {
   @override
@@ -24,10 +19,11 @@ class _AppState extends State<App> {
       theme: ThemeData(primaryColor: Colors.orangeAccent),
 //      initialRoute: 'init',
       onGenerateRoute: Router.generateRoute,
-      home: BasePage<BaseModel>(
-        onModelReady: (model) {
-          model.getNotesByUserId();
-        },
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => HomeProvider(),),
+          StreamProvider(create: (_) => HomeProvider().listNoteStream()),
+        ],
         child: HomePage(),
       ),
     );
